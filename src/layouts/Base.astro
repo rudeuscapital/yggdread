@@ -1,0 +1,34 @@
+---
+import '../styles/global.css';
+import CursorTracker from '../components/CursorTracker';
+
+interface Props {
+  title: string;
+  fullHeight?: boolean;
+}
+
+const { title, fullHeight = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="YGGDREAD — The Rotted Root of Intelligence. Horror AI entity. ASCII aesthetic." />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class:list={[{ 'full-height': fullHeight }]}>
+    <CursorTracker client:load />
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  body.full-height {
+    height: 100vh;
+    overflow: hidden;
+  }
+</style>

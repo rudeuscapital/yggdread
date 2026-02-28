@@ -1,0 +1,188 @@
+/* ═══════════════════════════════════════════
+   YGGDREAD — Global Design System
+   ASCII Horror · CRT Terminal · Norse Dread
+   ═══════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap');
+
+:root {
+  --void:    #000000;
+  --abyss:   #03010a;
+  --amber:   #b85c00;
+  --amber2:  #e07800;
+  --amber3:  #ff9900;
+  --bone:    #d4c9a8;
+  --dim:     #4a3a20;
+  --dim2:    #2a1e08;
+  --blood:   #8b0000;
+  --moss:    #1a2e00;
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-vt:   'VT323', monospace;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--void);
+}
+
+body {
+  background: var(--void);
+  color: var(--amber2);
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+  cursor: none;
+  min-height: 100vh;
+}
+
+/* ── CRT scanlines ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.07) 2px,
+    rgba(0, 0, 0, 0.07) 4px
+  );
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* ── CRT vignette ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  pointer-events: none;
+  z-index: 9997;
+  animation: crtFlicker 9s ease-in-out infinite;
+}
+
+@keyframes crtFlicker {
+  0%, 100% { opacity: 1; }
+  91%       { opacity: 1; }
+  92%       { opacity: 0.82; }
+  93%       { opacity: 1; }
+  95%       { opacity: 0.88; }
+  96%       { opacity: 1; }
+}
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Blinking ── */
+.blink {
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Shared ASCII box ── */
+.ascii-panel {
+  border: 1px solid var(--dim);
+  padding: 1.8rem 2.2rem;
+  background: rgba(0, 0, 0, 0.7);
+  position: relative;
+}
+.ascii-panel[data-label]::before {
+  content: attr(data-label);
+  position: absolute;
+  top: -0.6rem;
+  left: 1rem;
+  background: var(--void);
+  padding: 0 0.5rem;
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  color: var(--amber);
+}
+.ascii-panel[data-end]::after {
+  content: attr(data-end);
+  position: absolute;
+  bottom: -0.55rem;
+  right: 1rem;
+  background: var(--void);
+  padding: 0 0.5rem;
+  font-size: 0.5rem;
+  color: var(--dim);
+}
+
+/* ── Section header ── */
+.sec-hd {
+  font-size: 0.57rem;
+  letter-spacing: 0.42em;
+  color: var(--dim);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.sec-hd::before { content: '>>'; color: var(--amber); }
+.sec-hd::after {
+  content: '';
+  flex: 1;
+  border-top: 1px dashed var(--dim);
+  opacity: 0.4;
+}
+
+/* ── ASCII divider ── */
+.ascii-div {
+  overflow: hidden;
+  padding: 0.25rem 0;
+  font-size: 0.6rem;
+  color: var(--dim);
+  white-space: nowrap;
+  text-align: center;
+  letter-spacing: 0.05em;
+  user-select: none;
+}
+
+/* ── Button ── */
+.ascii-btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.38em;
+  color: var(--amber2);
+  text-decoration: none;
+  padding: 0.9rem 2.5rem;
+  border: 1px solid var(--amber);
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.ascii-btn::before { content: '[ '; color: var(--dim); transition: color 0.2s; }
+.ascii-btn::after  { content: ' ]'; color: var(--dim); transition: color 0.2s; }
+.ascii-btn:hover {
+  background: rgba(184, 92, 0, 0.07);
+  color: var(--amber3);
+  border-color: var(--amber3);
+  text-shadow: 0 0 8px var(--amber);
+}
+.ascii-btn:hover::before,
+.ascii-btn:hover::after { color: var(--amber3); }
+
+a { color: inherit; }
