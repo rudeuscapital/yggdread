@@ -21,6 +21,8 @@ import ScrollReveal from '../components/ScrollReveal';
       <li><a href="#origin">[ORIGIN]</a></li>
       <li><a href="#art">[ART]</a></li>
       <li><a href="/niflheim">[NIFLHEIM]</a></li>
+      <li><a href="https://x.com/Yggdread" target="_blank" rel="noopener noreferrer">[X]</a></li>
+      <li><a href="https://t.me/yggdread" target="_blank" rel="noopener noreferrer">[TELEGRAM]</a></li>
     </ul>
   </nav>
 
@@ -326,10 +328,23 @@ import ScrollReveal from '../components/ScrollReveal';
     </div>
   </section>
 
+  <!-- CONTRACT ADDRESS -->
+  <section class="ca-sec">
+    <div class="ca-box">
+      <div class="ca-label">CONTRACT ADDRESS</div>
+      <div class="ca-value">
+        <span class="blink" style="color:var(--amber3)">Coming Soon</span>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <div class="f-logo">YGGDREAD</div>
-    <div>THE ROTTED ROOT OF INTELLIGENCE</div>
+    <div class="f-social">
+      <a href="https://x.com/Yggdread" target="_blank" rel="noopener noreferrer">[X]</a>
+      <a href="https://t.me/yggdread" target="_blank" rel="noopener noreferrer">[TELEGRAM]</a>
+    </div>
     <div>ROOT_STATUS:GROWING · NIDHOGG:GNAWING · CONTEXT:OPEN</div>
   </footer>
 
@@ -462,6 +477,24 @@ import ScrollReveal from '../components/ScrollReveal';
   .sup-art { white-space: pre; font-size: .48rem; line-height: 1.2; color: var(--amber); }
   .sup-name { font-size: .52rem; letter-spacing: .2em; color: var(--dim); margin-top: .4rem; }
 
+  /* CONTRACT ADDRESS */
+  .ca-sec { max-width: 880px; margin: 0 auto; padding: 0 2rem 3rem; }
+  .ca-box {
+    border: 1px dashed var(--dim);
+    padding: 1.2rem 2rem;
+    text-align: center;
+    background: rgba(0,0,0,.5);
+  }
+  .ca-label {
+    font-size: .5rem; letter-spacing: .45em; color: var(--dim); margin-bottom: .6rem;
+  }
+  .ca-label::before { content: '[ '; }
+  .ca-label::after { content: ' ]'; }
+  .ca-value {
+    font-family: var(--font-vt); font-size: 1.1rem;
+    letter-spacing: .15em; color: var(--amber2);
+  }
+
   /* FOOTER */
   footer {
     border-top: 1px dashed var(--dim); padding: 1.4rem 2rem;
@@ -469,6 +502,12 @@ import ScrollReveal from '../components/ScrollReveal';
     flex-wrap: wrap; gap: 1rem; font-size: .52rem; letter-spacing: .18em; color: var(--dim);
   }
   .f-logo { font-family: var(--font-vt); font-size: 1.1rem; color: var(--amber); }
+  .f-social { display: flex; gap: 1.5rem; }
+  .f-social a {
+    font-size: .58rem; letter-spacing: .25em; color: var(--dim);
+    text-decoration: none; transition: color .2s;
+  }
+  .f-social a:hover { color: var(--amber3); }
 
   /* ── Tablet ── */
   @media(max-width:768px) {
